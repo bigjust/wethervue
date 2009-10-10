@@ -1,0 +1,48 @@
+<%inherit file="layout.html" />
+<%def name="head()">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery.validate/1.5.5/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/static/jquery.dataTables.js"></script>
+<script type="text/javascript"> 
+ 
+$(document).ready(function() {
+    $('#locations').dataTable();
+    $('#addressForm').validate();
+}); 
+
+</script> 
+</%def>
+<%def name="body()">
+<table id="locations" border="1">
+<thead>
+<tr>
+<th>Street 1</th>
+<th>Street 2</th>
+<th>City</th>
+<th>State</th>
+<th>Zip</th>
+<th>Lat</th>
+<th>Long</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+%for location in locationSet:
+    <tr>
+    <td>${location.street1}</td>
+    <td>${location.street2}</td>
+    <td>${location.city}</td>
+    <td>${location.state}</td>
+    <td>${location.zipcode}</td>
+    <td>${location.latitude}</td>
+    <td>${location.longitude}</td>
+    <td><a href="/removeAddress/${location.key()}">Delete</a></td>
+    </tr>
+%endfor
+</tbody>
+</table>
+
+<form method="POST" id="addressForm">
+${form.render()}
+</form>
+</%def>

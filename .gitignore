@@ -1,0 +1,7 @@
+*.pyc
+*.*~
+BeautifulSoup.py
+mako
+geopy
+web
+index.yaml

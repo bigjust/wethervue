@@ -1,0 +1,43 @@
+$def with (id, locations)
+<html>
+<head>
+<title>Map $id</title>
+<script type="text/javascript" src="/static/jquery.js"></script>
+<script type="text/javascript" src="/static/jquery.dataTables.js"></script>
+    <script type="text/javascript"> 
+ 
+    $$(document).ready(function() {
+	$$('#mapLocations').dataTable();}); 
+    </script> 
+  </head> 
+<body>
+<h4>Showing Map $id</h4>
+<table id="mapLocations" border="1">
+<thead>
+<tr>
+<th>Street 1</th>
+<th>Street 2</th>
+<th>City</th>
+<th>State</th>
+<th>Zip</th>
+<th>Lat</th>
+<th>Long</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+$for result1 in locations:
+    <tr>
+    <td>$result1.street1</td>
+    <td>$result1.street2</td>
+    <td>$result1.city</td>
+    <td>$result1.state</td>
+    <td>$result1.zip</td>
+    <td>$result1.latitude</td>
+    <td>$result1.longitude</td>
+    <td></td>
+    </tr>
+</tbody>
+</table>
+</body>
+</html>

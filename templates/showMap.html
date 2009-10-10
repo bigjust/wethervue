@@ -1,9 +1,80 @@
-$def with (mapID)
-<html>
-<head>
-<title>Map $mapID</title>
-</head>
-<body>
-<h4>Showing Map $mapID</title>
-</body>
-</html>
+<%inherit file="layout.html" />
+<%def name="head()">
+<title>Map ${id}</title>
+${self.head()}
+</%def>
+<%def name="body()">
+<div id="map_canvas" style="width: 800px; height: 400px"></div> 
+<h4>Showing Map ${id}</h4>
+<table id="locations" border="1">
+<thead>
+<tr>
+<th>Street 1</th>
+<th>Street 2</th>
+<th>City</th>
+<th>State</th>
+<th>Zip</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+%for location in locationSet:
+    <tr>
+    <td>${location.street1}</td>
+    <td>${location.street2}</td>
+    <td>${location.city}</td>
+    <td>${location.state}</td>
+    <td>${location.zipcode}</td>
+    </tr>
+%endfor
+</tbody>
+</table>
+<table id="kmls" border="1">
+<thead>
+<tr>
+<th>KML Desc</th>
+<th>KML URL</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+%for kmlSite in kmlSet:
+    <tr>
+    <td>${kmlSite.description}</td>
+    <td>${kmlSite.url}</td>
+    </tr>
+%endfor
+</tbody>
+</table>
+<script type="text/javascript"> 
+initialize(); 
+</script>
+</%def>
+
+<%def name="head()">
+
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAEd_s8HoCrsRFFcOYL6SdvRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxQb3_ZGfM9R1sRjSfwRGUJudLSTNg"
+            type="text/javascript"></script> 
+    <script type="text/javascript"> 
+ 
+      var usCenterPoint = new GLatLng(39.833333, -98.583333)
+      var usZoom = 4
+      
+      function initialize() {
+      if (GBrowserIsCompatible()) {
+        var map = new GMap2(document.getElementById("map_canvas"));
+        map.setCenter(usCenterPoint, 4);
+        map.setUIToDefault();
+%for location in locationSet:      
+      var latlng = new GLatLng(parseFloat(${location.latitude}), parseFloat(${location.longitude}));
+      map.addOverlay(new GMarker(latlng));
+%endfor
+%for kml in kmlSet:
+    var gx = new GGeoXml("${kml.url}");
+    map.addOverlay(gx);
+%endfor      
+     }
+    }
+ 
+    </script> 
+</%def>

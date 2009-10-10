@@ -1,0 +1,12 @@
+WetherVue (0.1.0)
+-----------------------------
+
+WetherVue is a point of concept application tying together Google App Engine, WebPy, Google Maps API into a useful application for mapping persistent locations, and applying interesting overlays using KML feeds that are also persistent.
+
+Requirements:
+	WebPy 0.32
+	geoPy 0.93
+	Google App Engine SDK 1.2.5
+	Mako Template Engine 0.2.6
+	Beautiful Soup 3.1.0.1
+	Python 2.5

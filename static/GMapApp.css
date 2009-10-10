@@ -1,0 +1,26 @@
+div.hoverBtn {
+	position: 		relative;
+	width: 			100px;
+	height: 		30px;
+	background:		#000 url(your_background_image.png) repeat-x 0 0 scroll;
+}
+div.hoverBtn a {
+	position: 		relative;
+	z-index: 		2;
+	display: 		block;
+	width: 			100px;
+	height: 		30px;
+	line-height: 		30px;
+	text-align: 		center;
+	color:			#000;
+	background:		transparent none repeat-x 0 0 scroll;
+}
+div.hoverBtn div {
+	display:		none;
+	position: 		relative;
+	z-index: 		1;
+	width: 			100px;
+	height: 		30px;
+	margin-top: 		-30px;
+	background:		#FFF url(your_hover_image.png) none repeat-x 0 0 scroll;
+}

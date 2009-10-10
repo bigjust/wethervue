@@ -1,0 +1,41 @@
+<%inherit file="layout.html" />
+<%def name="head()">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery.validate/1.5.5/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/static/jquery.dataTables.js"></script> 
+<script type="text/javascript">
+
+$(document).ready(function() {
+    $('#locations').dataTable();
+    $('#mapForm').validate();
+});
+
+</script>
+</%def>
+<%def name="body()">
+<table id="maps" border="1">
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+%for map in mapSet:
+    <tr>
+    <td>${map.name}</td>
+    <td>${map.description}</td>
+    <td><a href="/showMap/${map.key()}">View</a></td>
+    <td><a href="/showMapV3/${map.key()}">View V3 (Alpha)</a></td>
+    <td><a href="/removeMap/${map.key()}">Remove</a></td>
+    </tr>
+%endfor
+</tbody>
+</table>
+
+<form id="mapForm" method="POST" action="maps">
+${form.render()}
+</form>
+</%def>
