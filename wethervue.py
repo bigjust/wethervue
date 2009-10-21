@@ -32,23 +32,25 @@ render = render_mako(
 app = web.application(urls, globals())
 
 #api key good for localhost only
-GMapsAPIKey = 'ABQIAAAAEd_s8HoCrsRFFcOYL6SdvRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxQb3_ZGfM9R1sRjSfwRGUJudLSTNg'
+#GMapsAPIKey = 'ABQIAAAAEd_s8HoCrsRFFcOYL6SdvRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxQb3_ZGfM9R1sRjSfwRGUJudLSTNg'
+#api key good for wethervue.appspot.com
+GMapsAPIKey = 'ABQIAAAAEd_s8HoCrsRFFcOYL6SdvRQ_VMvLTCA6JbwMdWgByzZEAJwWXRTWDKsZ4oaZNpE0DT92ZqOb5cXJFw'
 
 addressForm = form.Form(
-	form.Textbox("street1", class_="required", description="* Street 1"),
+	form.Textbox("street1", class_="validate[required]", description="* Street 1"),
 	form.Textbox("street2", description="Street 2"),
-	form.Textbox("city", class_="required", description="* City"),
-	form.Textbox("state", class_="required", description="* State"),
-	form.Textbox("zipcode", class_="required", description="* Zipcode"),
+	form.Textbox("city", class_="validate[required]", description="* City"),
+	form.Textbox("state", class_="validate[required]", description="* State"),
+	form.Textbox("zipcode", class_="validate[required]", description="* Zipcode"),
 	form.Button("Add Location", type="submit"))
 
 overlayForm = form.Form(
 	form.Textbox("description", description="Description"),
-	form.Textbox("url", class_="required", description="* URL"),
+	form.Textbox("url", class_="validate[required]", description="* URL"),
 	form.Button("Add Overlay", type="submit"))
 
 mapForm = form.Form(
-	form.Textbox("name", class_="required", description="* Name"),
+	form.Textbox("name", class_="validate[required]", description="* Name"),
 	form.Textbox("description", description="Description"),
 	form.Button("Add Map", type="submit"))
 

@@ -1,14 +1,21 @@
 <%inherit file="layout.html" />
 <%def name="head()">
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
-<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery.validate/1.5.5/jquery.validate.min.js"></script>
 <script type="text/javascript" src="/static/jquery.dataTables.js"></script>
+<script type="text/javascript" src="/static/jquery.validationEngine.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="/static/css/validationEngine.jquery.css" />
 <script type="text/javascript"> 
  
 $(document).ready(function() {
     $('#locations').dataTable();
-    $('#addressForm').validate();
-}); 
+ 
+$('#addressForm').validationEngine({
+  inlineValidation: false,
+  success :  false,
+  failure : function() {
+  }
+ });   
+});
 
 </script> 
 </%def>
@@ -41,8 +48,11 @@ $(document).ready(function() {
 %endfor
 </tbody>
 </table>
-
+<br /><br />
+<fieldset>
+<legend>New Address</legend>
 <form method="POST" id="addressForm">
 ${form.render()}
 </form>
+</fieldset>
 </%def>
